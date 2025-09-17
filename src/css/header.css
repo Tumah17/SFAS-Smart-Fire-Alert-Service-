@@ -1,0 +1,40 @@
+* {
+  font-family: "Inter", sans-serif;
+}
+
+#nav img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 10px;
+}
+
+#nav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #cbeef3;
+}
+
+#nav ul {
+  display: flex;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+#nav ul li {
+  list-style: none;
+  font-size: 20px;
+}
+
+#nav ul li a {
+  text-decoration: none;
+  color: #000;
+  transition: border-bottom 0.25s;
+  cursor: pointer;
+}
+
+#nav ul li a:hover {
+  color: #e63946;
+}
