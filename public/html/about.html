@@ -1,76 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <title>About</title>
-    <!-- css  -->
-    <link rel="stylesheet" href="../CSS/header.css" />
-    <link rel="stylesheet" href="../CSS/footer.css" />
-    <link rel="stylesheet" href="../CSS/about.css" />
-  </head>
-  <body>
-    <header>
-      <nav id="nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section>
-        <div class="about-container">
-          <h1>About Our System</h1>
-          <div class="about-divs-container">
-            <div class="about about-1">
-              <img src="../IMAGES/about-1.jpeg" alt="about image" />
-              <h2>An Alert System</h2>
-              <p>
-                Fire outbreak is one of the major concerns in our country. In
-                order to address this, our system is designed to help send alert
-                to citizens, fire service, and the police department.
-              </p>
-            </div>
-            <div class="about about-2">
-              <img src="../IMAGES/about-2.jpeg" alt="about image" />
-              <h2>Designed to Protect Homes</h2>
-              <p>
-                Using our system will help protect you and your community from
-                fire crisis. Together, we can help build safer homes and
-                communities.
-              </p>
-            </div>
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>About | Fire Alarm System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html"><img src="../img/S-removebg-preview.png" alt="logo"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html" class="active-link">About</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="analysis.html">Analysis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div class="theme-toggle" id="theme-toggle">🌙</div>
+  </nav>
+
+  <main>
+    <section class="hero about-hero">
+      <div class="card">
+        <h1>About Our Fire Alarm System</h1>
+        <p class="lead">We build low-cost IoT devices and a cloud platform to dramatically reduce response time to home fires.</p>
+        <div class="grid" style="margin-top:20px">
+          <div class="card-feature">
+            <h3>Mission</h3>
+            <p>Save lives through early detection, community awareness and effective analytics.</p>
+          </div>
+          <div class="card-feature">
+            <h3>Vision</h3>
+            <p>Every community protected by affordable, maintainable devices and trained local teams.</p>
+          </div>
+          <div class="card-feature">
+            <h3>Values</h3>
+            <p>Trust, accessibility, reliability and community ownership.</p>
           </div>
         </div>
-      </section>
-    </main>
-    <footer>
-      <nav id="footer-nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="">Terms and Conditions</a></li>
-          <li><a href="">Privary Policy</a></li>
-          <li><span>&#169; All rights reserved</span></li>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">What we do</div>
+      <p class="lead">From device design to data insights, we provide end-to-end solutions: device firmware, connectivity, analytics, and community training.</p>
+
+      <div class="about-cards grid" style="margin-top:18px">
+        <div class="card-feature">
+          <img src="../IMAGES/about-1.jpeg" alt=""><h3>An Alert System</h3><p>Devices send prioritized alerts to households and responders.</p>
+        </div>
+        <div class="card-feature">
+          <img src="../IMAGES/about-2.jpeg" alt=""><h3>Protect Homes</h3><p>Networked awareness helps neighbors assist earlier and reduce damage.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">Milestones</div>
+      <p class="lead">Prototype → Pilot (Monrovia) → Wider rollout. We focus on partnerships for scaling.</p>
+    </section>
+
+    <div class="footer">
+      <img src="../IMAGES/logo.jpg" alt="" style="height:36px">
+      <div class="small">© 2025 Fire Alarm System — Demo</div>
+    </div>
+  </main>
+
+  <script>
+    // same scripts as home: hamburger + theme
+    const hamburger = document.getElementById('hamburger'); const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');hamburger.classList.toggle('active')});
+    const themeToggle = document.getElementById('theme-toggle'); const storedTheme = localStorage.getItem('theme');
+    if(storedTheme === 'light'){document.body.classList.add('light-mode'); themeToggle.textContent='🌙'} else{themeToggle.textContent='☀️'}
+    themeToggle.addEventListener('click', ()=>{document.body.classList.toggle('light-mode'); if(document.body.classList.contains('light-mode')){localStorage.setItem('theme','light');themeToggle.textContent='🌙'} else{localStorage.setItem('theme','dark');themeToggle.textContent='☀️'}})
+  </script>
+</body>
 </html>

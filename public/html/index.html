@@ -1,64 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- css  -->
-    <link rel="stylesheet" href="../CSS/header.css" />
-    <link rel="stylesheet" href="../CSS/footer.css" />
-    <link rel="stylesheet" href="../CSS/index.css" />
-  </head>
-  <body>
-    <header>
-      <nav id="nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section>
-        <div class="page-intro-container">
-          <h1>Fire Alarm System</h1>
-          <p>
-            A way to monitor and help save your home or homes in your community
-            from fire disasters.
-          </p>
-          <div class="link-div">
-            <a href="map.html">Monitor Map</a>
-            <a href="about.html">Learn More</a>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home | Fire Alarm System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <style>
+    /* small page-specific tweaks */
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html"><img src="../img/S-removebg-preview.png" alt="logo"></a>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active-link">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="analysis.html">Analysis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div class="theme-toggle" id="theme-toggle">🌙</div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="card">
+        <h1>Fire Alarm System — Real-time IoT protection for communities</h1>
+        <p class="lead">We connect households via compact IoT devices, stream sensor data to our cloud, and provide instant alerts, mapping and analytics to reduce response time and protect lives. This is a demo interface for the Liberia pilot.</p>
+        <div class="cta">
+          <a class="btn btn-primary btn-large" href="map.html">Open Demo Map</a>
+          <a class="btn btn-ghost" href="analysis.html">View Analytics</a>
+        </div>
+
+        <!-- quick product highlights -->
+        <div style="margin-top:28px" class="grid">
+          <div class="card-feature">
+            <img src="../img/homepage.jpg" alt="">
+            <h3>Real-time alerts</h3>
+            <p>Instant push & SMS alerts to households and authorities when threshold sensors trigger.</p>
+          </div>
+          <div class="card-feature">
+            <img src="../IMAGES/feature2.png" alt="">
+            <h3>Edge + Cloud</h3>
+            <p>Local device edge processing with secure cloud aggregation for analytics and visualization.</p>
+          </div>
+          <div class="card-feature">
+            <img src="../IMAGES/feature3.png" alt="">
+            <h3>Community network</h3>
+            <p>Neighborhood mapping and shared alerting to support faster community response.</p>
           </div>
         </div>
-      </section>
-    </main>
-    <footer>
-      <nav id="footer-nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="">Terms and Conditions</a></li>
-          <li><a href="">Privary Policy</a></li>
-          <li><span>&#169; All rights reserved</span></li>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">Why this project matters</div>
+      <p class="lead">In Liberia and similar regions, fast notification and localized situational awareness save lives. Our devices are low-cost, solar-ready, and designed for local maintenance — that means scalable protection across neighborhoods.</p>
+
+      <div class="how-steps" style="margin-top:18px">
+        <div class="step">
+          <h4>Deploy</h4>
+          <p>Plug-in device, connect to Wi-Fi/LoRa gateway or local mesh, register using the household ID.</p>
+        </div>
+        <div class="step">
+          <h4>Monitor</h4>
+          <p>Temperature, smoke density, and battery telemetry stream continuously to dashboards and the mobile app.</p>
+        </div>
+        <div class="step">
+          <h4>Act</h4>
+          <p>Automated alerts guide first responders and neighbors; system logs enable after-action analysis.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">Technical snapshot</div>
+      <div class="grid">
+        <div class="card-feature">
+          <h3>Hardware</h3>
+          <p>Sensors: smoke, temp, CO. MCU with fallback logging, RTC, low-power modes.</p>
+        </div>
+        <div class="card-feature">
+          <h3>Connectivity</h3>
+          <p>Wi-Fi + optional LoRa mesh for greater reach. Devices can work offline and sync later.</p>
+        </div>
+        <div class="card-feature">
+          <h3>Cloud & Analytics</h3>
+          <p>Secure MQTT ingestion, time-series DB, and analytics for trend detection and alerts.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">Impact & deployment plan</div>
+      <p class="lead">Pilot neighborhoods in Monrovia → expand to counties. Our target: 5,000 households in year-1 with priority on schools and markets.</p>
+      <div class="grid" style="margin-top:18px">
+        <div class="card-feature"><h3>Community training</h3><p>Local maintenance teams and awareness workshops.</p></div>
+        <div class="card-feature"><h3>Partnerships</h3><p>Coordination with fire services and local government.</p></div>
+        <div class="card-feature"><h3>Sustainability</h3><p>Solar-capable units and low-cost replacement parts.</p></div>
+      </div>
+    </section>
+
+    <section class="section container">
+      <div class="section-title">Ready to demo</div>
+      <p class="lead">Open the live demo map to see sample deployed households and jump to analytics to inspect monthly trends and lives impacted.</p>
+      <a class="btn btn-primary" href="map.html">Open Map Demo</a>
+    </section>
+
+    <div class="footer">
+      <img src="../IMAGES/logo.jpg" alt="logo" style="height:36px">
+      <div class="small">© 2025 Fire Alarm System — Demo</div>
+    </div>
+  </main>
+
+  <script src="../js/site-scripts.js" defer></script>
+  <script>
+    // inline minimal scripts if you don't want external js file:
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');hamburger.classList.toggle('active')});
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const storedTheme = localStorage.getItem('theme');
+    if(storedTheme === 'light'){document.body.classList.add('light-mode'); themeToggle.textContent='🌙'}
+    else { themeToggle.textContent = '☀️' }
+
+    themeToggle.addEventListener('click', ()=>{
+      document.body.classList.toggle('light-mode');
+      if(document.body.classList.contains('light-mode')){localStorage.setItem('theme','light');themeToggle.textContent='🌙'}
+      else{localStorage.setItem('theme','dark');themeToggle.textContent='☀️'}
+    });
+  </script>
+</body>
 </html>

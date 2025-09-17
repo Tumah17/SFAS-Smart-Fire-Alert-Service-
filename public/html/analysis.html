@@ -1,55 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Communities Analysis</title>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Analysis | Fire Alarm System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html"><img src="../img/S-removebg-preview.png" alt="logo"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="map.html">Map</a></li>
+      <li><a href="analysis.html" class="active-link">Analysis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div class="theme-toggle" id="theme-toggle">🌙</div>
+  </nav>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- css  -->
-    <link rel="stylesheet" href="../CSS/header.css" />
-    <link rel="stylesheet" href="../CSS/footer.css" />
-    <link rel="stylesheet" href="../CSS/analysis.css" />
-  </head>
-  <body>
-    <header>
-      <nav id="nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main>
-      <section class="map-and-analysis">
-        <h1>Communities Analysis</h1>
-      </section>
-    </main>
-    <footer>
-      <nav id="footer-nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="">Terms and Conditions</a></li>
-          <li><a href="">Privary Policy</a></li>
-          <li><span>&#169; All rights reserved</span></li>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+  <main class="container">
+    <div class="section-title">Network analytics</div>
+    <p class="lead">Overview of device presence, alerts and estimated lives impacted (demo data).</p>
+
+    <div class="charts" style="margin-top:18px">
+      <div class="card-analytics">
+        <h4>Monthly Alerts</h4>
+        <canvas id="alertsChart" style="height:260px"></canvas>
+      </div>
+      <div class="card-analytics">
+        <h4>Households Online</h4>
+        <canvas id="onlineChart" style="height:260px"></canvas>
+      </div>
+    </div>
+
+    <section style="margin-top:20px">
+      <div class="section-title">Estimated impact</div>
+      <div class="grid" style="margin-top:12px">
+        <div class="card-feature"><h3>Lives estimated saved</h3><p class="lead" style="font-size:22px;color:var(--primary)">~42</p></div>
+        <div class="card-feature"><h3>Alerts this month</h3><p class="lead" style="font-size:22px;color:var(--primary)">18</p></div>
+        <div class="card-feature"><h3>Active households</h3><p class="lead" style="font-size:22px;color:var(--primary)">512</p></div>
+      </div>
+    </section>
+
+    <section style="margin-top:22px">
+      <div class="card-analytics">
+        <h4>Household Data</h4>
+        <table class="table">
+          <thead><tr><th>Household ID</th><th>Neighborhood</th><th>Alerts (30d)</th><th>Last seen</th></tr></thead>
+          <tbody>
+            <tr><td>H-001</td><td>Sinkor</td><td>3</td><td>2025-09-12</td></tr>
+            <tr><td>H-002</td><td>Paynesville</td><td>6</td><td>2025-09-17</td></tr>
+            <tr><td>H-003</td><td>Kakata</td><td>0</td><td>2025-09-10</td></tr>
+            <tr><td>H-004</td><td>Bensonville</td><td>2</td><td>2025-09-15</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div style="height:28px"></div>
+    <div class="footer"><img src="../img/S-removebg-preview.png" alt="" style="height:36px"><div class="small">© 2025 Fire Alarm System — Liberia</div></div>
+  </main>
+
+  <script>
+    // nav + theme
+    const hamburger = document.getElementById('hamburger'); const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');hamburger.classList.toggle('active')});
+    const themeToggle = document.getElementById('theme-toggle'); const storedTheme = localStorage.getItem('theme');
+    if(storedTheme === 'light'){document.body.classList.add('light-mode'); themeToggle.textContent='🌙'} else{themeToggle.textContent='☀️'}
+    themeToggle.addEventListener('click', ()=>{document.body.classList.toggle('light-mode'); if(document.body.classList.contains('light-mode')){localStorage.setItem('theme','light');themeToggle.textContent='🌙'} else{localStorage.setItem('theme','dark');themeToggle.textContent='☀️'}})
+
+    // Chart.js demo data
+    const alertsCtx = document.getElementById('alertsChart').getContext('2d');
+    new Chart(alertsCtx, {
+      type:'bar',
+      data:{
+        labels:['May','Jun','Jul','Aug','Sep'],
+        datasets:[{label:'Alerts',data:[5,9,12,7,18],backgroundColor:'rgba(0,170,255,0.9)'}]
+      },
+      options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:true}}}
+    });
+
+    const onlineCtx = document.getElementById('onlineChart').getContext('2d');
+    new Chart(onlineCtx, {
+      type:'line',
+      data:{labels:['Week1','Week2','Week3','Week4'],datasets:[{label:'Households online',data:[420,450,490,512],fill:true,backgroundColor:'rgba(0,170,255,0.12)',borderColor:'rgba(0,170,255,0.9)'}]},
+      options:{plugins:{legend:{display:false}},scales:{y:{beginAtZero:false}}}
+    });
+  </script>
+</body>
 </html>

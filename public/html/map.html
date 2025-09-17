@@ -1,50 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Map</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <!-- css  -->
-    <link rel="stylesheet" href="../CSS/header.css" />
-    <link rel="stylesheet" href="../CSS/footer.css" />
-    <link rel="stylesheet" href="../CSS/map.css" />
-  </head>
-  <body>
-    <header>
-      <nav id="nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
-    </header>
-    <main></main>
-    <footer>
-      <nav id="footer-nav">
-        <a href="index.html">
-          <img src="../IMAGES/logo.jpg" alt=" fire alert logo" />
-        </a>
-        <ul>
-          <li><a href="map.html">Map</a></li>
-          <li><a href="analysis.html">Analysis</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="">Terms and Conditions</a></li>
-          <li><a href="">Privary Policy</a></li>
-          <li><span>&#169; All rights reserved</span></li>
-        </ul>
-      </nav>
-    </footer>
-  </body>
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Map | Fire Alarm System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style> #map{height:70vh;margin-top:8px} </style>
+</head>
+<body>
+  <nav class="navbar">
+    <a class="logo" href="index.html"><img src="../img/S-removebg-preview.png" alt="logo"></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="map.html" class="active-link">Map</a></li>
+      <li><a href="analysis.html">Analysis</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+    <div class="theme-toggle" id="theme-toggle">🌙</div>
+  </nav>
+
+  <main class="container">
+    <div class="section-title">Deployment Map — Liberia (demo)</div>
+    <p class="lead">Markers show demo households and neighborhood clusters where devices are deployed. This is a static demo centered on Liberia.</p>
+
+    <div id="map"></div>
+
+    <div class="map-legend">
+      <div class="legend-item"><span class="legend-dot" style="background: #00aaff"></span> Active device</div>
+      <div class="legend-item"><span class="legend-dot" style="background: #ff7b7b"></span> Recent alert</div>
+      <div class="legend-item"><span class="legend-dot" style="background: #ffd166"></span> Low battery</div>
+    </div>
+
+    <section style="margin-top:18px">
+      <div class="card-analytics">
+        <h3>Connected households (demo)</h3>
+        <p class="lead">Below are a few sample households and their status. Replace with real data from your backend.</p>
+        <table class="table" style="margin-top:12px">
+          <thead><tr><th>Household ID</th><th>Neighborhood</th><th>Status</th><th>Last seen</th></tr></thead>
+          <tbody id="household-table">
+            <!-- JS will populate demo rows -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <div style="height:36px"></div>
+    <div class="footer">
+      <img src="../IMAGES/logo.jpg" alt="" style="height:36px">
+      <div class="small">© 2025 Fire Alarm System — Demo</div>
+    </div>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <script>
+    // navbar + theme (re-used)
+    const hamburger = document.getElementById('hamburger'); const navLinks = document.querySelector('.nav-links');
+    hamburger.addEventListener('click',()=>{navLinks.classList.toggle('active');hamburger.classList.toggle('active')});
+    const themeToggle = document.getElementById('theme-toggle'); const storedTheme = localStorage.getItem('theme');
+    if(storedTheme === 'light'){document.body.classList.add('light-mode'); themeToggle.textContent='🌙'} else{themeToggle.textContent='☀️'}
+    themeToggle.addEventListener('click', ()=>{document.body.classList.toggle('light-mode'); if(document.body.classList.contains('light-mode')){localStorage.setItem('theme','light');themeToggle.textContent='🌙'} else{localStorage.setItem('theme','dark');themeToggle.textContent='☀️'}})
+
+    // INIT MAP (center on Liberia)
+    const map = L.map('map').setView([6.4281, -9.4295], 7); // center roughly on Liberia
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+      maxZoom: 18, attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Demo household marker data (replace with real data later)
+    const households = [
+      {id:'H-001', name:'Sinkor', lat:6.3156, lng:-10.7969, status:'active', last:'2025-09-12 08:22'},
+      {id:'H-002', name:'Paynesville', lat:6.3578, lng:-10.7302, status:'recent-alert', last:'2025-09-17 14:10'},
+      {id:'H-003', name:'Kakata', lat:6.6434, lng:-10.4603, status:'low-battery', last:'2025-09-10 09:00'},
+      {id:'H-004', name:'Bensonville', lat:6.4500, lng:-10.6000, status:'active', last:'2025-09-15 10:11'},
+      {id:'H-005', name:'Gbarnga', lat:7.0000, lng:-9.5000, status:'active', last:'2025-09-11 20:03'}
+    ];
+
+    function colorForStatus(s){
+      if(s==='recent-alert') return '#ff7b7b';
+      if(s==='low-battery') return '#ffd166';
+      return '#00aaff';
+    }
+
+    households.forEach(h=>{
+      const marker = L.circleMarker([h.lat,h.lng], {
+        radius:9, fillColor: colorForStatus(h.status), color:'#222', weight:1, fillOpacity:0.95
+      }).addTo(map);
+      marker.bindPopup(`<strong>${h.id}</strong><br>${h.name}<br>Status: ${h.status}<br>Last: ${h.last}`);
+    });
+
+    // populate table
+    const tbody = document.getElementById('household-table');
+    households.forEach(h=>{
+      const tr = document.createElement('tr');
+      tr.innerHTML = `<td>${h.id}</td><td>${h.name}</td><td>${h.status}</td><td>${h.last}</td>`;
+      tbody.appendChild(tr);
+    });
+  </script>
+</body>
 </html>
